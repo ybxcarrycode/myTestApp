@@ -1,5 +1,8 @@
 package com.ybxcc.testinysx.mytestapp.testClass;
 
+import android.content.Intent;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,8 +11,13 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Scheduler;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func0;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Ybx on 2017/5/9.
@@ -42,7 +50,7 @@ public class RxJavaTestClass {
         };
 
 
-        observable = Observable.just("1111", "2222").repeat(7);
+//        observable = Observable.just("1111", "2222").repeat(7);
 
 
 //        observable = Observable.create(new Observable.OnSubscribe<String>() {
@@ -61,12 +69,18 @@ public class RxJavaTestClass {
 //        observable = Observable.from(str);
 
 
-//        observable = Observable.defer(new Func0<Observable<String>>() {
-//            @Override
-//            public Observable<String> call() {
-//                return Observable.just("1","2","3");
-//            }
-//        });
+        observable = Observable.defer(new Func0<Observable<String>>() {
+            @Override
+            public Observable<String> call() {
+                return Observable.just("1", "2", "3");
+            }
+        }).map(new Func1<String, String>() {
+            @Override
+            public String call(String o) {
+                return o + "dd";
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.immediate())
+        ;
 
 
 //        observable = Observable.interval(1, TimeUnit.SECONDS);
@@ -77,7 +91,18 @@ public class RxJavaTestClass {
 
 //        observable = Observable.timer(2, TimeUnit.SECONDS);
 
-        observable.subscribe(observer);
+//        observable.subscribe(observer);
+
+
+        observable.subscribe(new Action1() {
+            @Override
+            public void call(Object o) {
+                Log.e("rxjava", "输出是：" + o + "\n");
+                System.out.print("输出是：" + o + "\n");
+            }
+        });
+
+
 
     }
 }

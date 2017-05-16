@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'me.tatarka.retrolambda'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -17,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
 }
 
 dependencies {
@@ -31,5 +39,15 @@ dependencies {
     //RxRava 引入
     compile 'io.reactivex:rxjava:1.0.14'
     compile 'io.reactivex:rxandroid:1.0.1'
+    
+    //引入 java8 特性
+    compile 'me.tatarka:gradle-retrolambda:3.4.0'
+    
+    //引入 OKHttp  配合 retrofit 应用
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    
+    //引入 retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 }
