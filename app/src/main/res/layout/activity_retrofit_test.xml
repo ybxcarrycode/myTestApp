@@ -5,14 +5,24 @@
               android:orientation="vertical">
 
 
-    <TextView
+    <EditText
         android:id="@+id/tv_getservice"
         style="@style/tv_test_style"
+        android:minHeight="10dp"
+        android:minWidth="10dp"
+        android:text="111"
         />
+
+    <Button
+        android:id="@+id/btn_get"
+        style="@style/tv_test_style"
+        android:text="获取数据"/>
 
     <TextView
         android:id="@+id/tv_showresult"
-        style="@style/tv_test_style"/>
+        style="@style/tv_test_style"
+        android:text="2222"
+        />
 
 
 </LinearLayout>

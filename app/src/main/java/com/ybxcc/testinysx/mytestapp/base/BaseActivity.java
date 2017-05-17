@@ -1,21 +1,23 @@
 package com.ybxcc.testinysx.mytestapp.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import butterknife.ButterKnife;
 
 
 /**
  * Created by Administrator on 2017/2/20.
  */
 
-public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener{
+public abstract class BaseActivity extends FragmentActivity{
     protected Context context;
     protected Handler refreshUi = new Handler();
 
@@ -27,9 +29,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
         context = BaseActivity.this;
 
-//        initProgressDialog();
         beforeContentView();
         setContentView(getContentViewResId());
+        ButterKnife.bind((Activity) context);
         getIntentDate();
         initTitle();
         bindViews();
@@ -49,7 +51,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     /**
      * 初始化 view
      */
-    protected abstract void bindViews();
+    protected void bindViews() {
+    };
 
 
     /**
@@ -61,7 +64,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     /**
      * 设置 view 的listener (添加以及实现)
      */
-    protected abstract void initListeners();
+    protected void initListeners() {
+    };
 
 
     /**
@@ -97,7 +101,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     protected void intData() {
 
     }
-
 
 
     /**
@@ -174,10 +177,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         super.onDestroy();
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
