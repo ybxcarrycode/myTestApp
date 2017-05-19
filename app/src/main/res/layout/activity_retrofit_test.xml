@@ -10,7 +10,7 @@
         style="@style/tv_test_style"
         android:minHeight="10dp"
         android:minWidth="10dp"
-        android:text="111"
+        android:text="1"
         />
 
     <Button
@@ -21,6 +21,7 @@
     <TextView
         android:id="@+id/tv_showresult"
         style="@style/tv_test_style"
+        android:scrollbars="vertical"
         android:text="2222"
         />
 

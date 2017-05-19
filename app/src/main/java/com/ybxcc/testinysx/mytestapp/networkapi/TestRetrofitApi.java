@@ -1,9 +1,11 @@
 package com.ybxcc.testinysx.mytestapp.networkapi;
 
-import okhttp3.RequestBody;
+import com.ybxcc.testinysx.mytestapp.bean.RetrofitTestBean;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 /**
  * Created by Ybx on 2017/5/17.
@@ -11,5 +13,5 @@ import retrofit2.http.Path;
 
 public interface TestRetrofitApi {
     @GET("api/data/Android/10/{page}")
-    Call<RequestBody> getDate(@Path("page") int page);
+    Observable<RetrofitTestBean> getDate(@Path("page") String page);
 }
